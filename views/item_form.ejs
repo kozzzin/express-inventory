@@ -14,7 +14,7 @@
     <% const action = update ? `/item/${item._id}/update` : "/item/create" %>
 
     <% if (true) {%>
-        <form class="width-500" action="<%= action %>" method="post">
+        <form class="width-500" action="<%= action %>" method="post" >
           <input type="hidden" name="categories" value="<%= JSON.stringify(categories) %>" />
           <input type="hidden" name="_id" value="<%= item._id %>">
           <div class="field">

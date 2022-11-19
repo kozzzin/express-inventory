@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoDB = require('./mongoDB');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,7 +18,7 @@ var app = express();
 const mongoose = require("mongoose");
 
 // Set up default mongoose connection
-const mongoDB = "mongodb+srv://admin:admin@library.4clq79k.mongodb.net/houses?retryWrites=true&w=majority";
+
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Get the default connection
