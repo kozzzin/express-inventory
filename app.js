@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const itemRouter = require('./routes/item');
+const categoryRouter = require('./routes/category');
 
 var app = express();
 
@@ -16,7 +17,7 @@ var app = express();
 const mongoose = require("mongoose");
 
 // Set up default mongoose connection
-const mongoDB = "mongodb+srv://admin:admin@library.4clq79k.mongodb.net/?retryWrites=true&w=majority";
+const mongoDB = "mongodb+srv://admin:admin@library.4clq79k.mongodb.net/houses?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Get the default connection
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/item', itemRouter);
+app.use('/category', categoryRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

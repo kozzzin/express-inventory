@@ -1,4 +1,46 @@
 <%- include('header') %>
-    <h1><%= title %></h1>
-    <p>Welcome to item</p>
+    <h1 class="title is-1 mt-5 uppercase"><%= item.name %></h1>
+    <p class="subtitle is-3">Do you like it?</p>
+    <% if (item) { %>  
+        <div class="card one-card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <a href="<%= item.url %>">
+                <img src="<%= item.img %>" alt="Placeholder image">
+              </a>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <a href="<%= item.url %>">
+                  <p class="title is-4"><%= item.name %></p>
+                </a>
+                <p class="subtitle is-6"><%= item.description %></p>
+              </div>
+            </div>
+        
+            <div class="content">
+              <p><strong>Location:</strong> <%= item.location %></p>
+              <p><strong>Price:</strong> $<%= item.price %></p>
+              <hr>
+              <p><strong>Categories:</strong></p>
+              <% item.category.forEach(item => { %>
+                <a href="<%= item.url %>">
+                  <button class="button is-link">
+                    <%= item.name %>
+                  </button>
+                </a>
+              <% }); %>
+            </div>
+          </div>
+    
+          <footer class="card-footer">
+            <a href="/item/<%= item._id %>/update" class="card-footer-item">Edit</a>
+            <a href="/item/<%= item._id %>/delete" class="card-footer-item">Delete</a>
+          </footer>
+        </div>
+    <% } else { %>
+
+    <% } %>
 <%- include('footer') %>

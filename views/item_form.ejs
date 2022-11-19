@@ -1,4 +1,79 @@
 <%- include('header') %>
-    <h1><%= title %></h1>
-    <p>Welcome to item form</p>
+    <h1 class="title is-1 mt-5 uppercase"><%= title || item.name %></h1>
+
+
+
+    <% if (post && !!fail) { %>
+      <p class="subtitle is-3 red">Error ocurred: <%= fail %></p>
+    <% } else {%>
+      <p class="subtitle is-3">
+        <%= update ? "Up this to date" : "Let's add something new" %>
+      </p>
+    <% } %>
+
+    <% const action = update ? `/item/${item._id}/update` : "/item/create" %>
+
+    <% if (true) {%>
+        <form class="width-500" action="<%= action %>" method="post">
+          <input type="hidden" name="categories" value="<%= JSON.stringify(categories) %>" />
+          <input type="hidden" name="_id" value="<%= item._id %>">
+          <div class="field">
+            <label class="label">House name:</label>
+            <div class="control">
+              <input class="input" value="<%= item.name %>" type="text" name="name" placeholder="Cosy Home" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Description:</label>
+            <div class="control">
+              <textarea name="description" class="textarea" placeholder="Enjoy the view"><%= item.description %></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Category:</label>
+            <div class="control">
+              <div class="select">
+                <select name="category">
+                  <option>Select category</option>
+                  <% categories.forEach((category) => {%>
+                    <option <%= item.category.toString() ==  category._id.toString() ? 'selected' : '' %> value="<%= category._id %>"><%= category.name %></option>
+                  <% }); %>
+                  
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Location:</label>
+            <div class="control">
+              <input value="<%= item.location %>" class="input" type="text" name="location" placeholder="Netherlands" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Price:</label>
+            <div class="control">
+              <input value="<%= item.price %>" class="input" type="number" name="price" placeholder="1000000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Cover photo:</label>
+            <div class="control">
+              <input value="<%= item.img %>" class="input" type="text" name="img" placeholder="/img/category-1.jpg" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Admin password:</label>
+            <div class="control">
+              <input class="input" type="password" name="password" placeholder="admin password" />
+            </div>
+          </div>
+          <input class="button is-primary" type="submit" value="Submit" />
+        </form>
+    <%}%>
 <%- include('footer') %>

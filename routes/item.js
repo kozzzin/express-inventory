@@ -7,10 +7,12 @@ router.get('/',(req,res) => {
 });
 
 router.get('/create',itemController.createItem);
+router.get('/create/:id',itemController.postCreateItem);
 router.post('/create',itemController.postCreateItem);
 router.get('/:id',itemController.getItem);
 router.get('/:id/update',itemController.updateItem);
 router.post('/:id/update',itemController.postUpdateItem);
-router.post('/:id/delete',itemController.deleteItem);
+router.get('/:id/delete',itemController.deleteItem);
+router.post('/:id/delete',itemController.postDeleteItem);
 
 module.exports = router;

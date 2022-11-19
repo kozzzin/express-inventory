@@ -1,4 +1,36 @@
 <%- include('header') %>
-    <h1><%= title %></h1>
-    <p>Welcome to categories</p>
+  <h1 class="title is-1 mt-5"><%= title %></h1>
+  <p class="subtitle is-3">Choose your category</p>
+
+  <h3 class="title is-4 mt-5">Categories: <%= categories.length %></h3>
+  <div class="categories">
+    <div class="category-name">
+      <strong>Name</strong>
+    </div>
+    <div class="category-qty">
+      <strong>Houses</strong>
+    </div>
+    <div class="category-buttons">
+      <strong>Edit</strong>
+    </div>
+    <% categories.forEach(element => { %>
+        <div class="category-name">
+          <a href="/category/<%= element._id %>">
+              <%= element.name %>
+          </a>
+        </div>
+        <div class="category-qty">
+          <%= element.count %>
+        </div>
+        <div class="category-buttons">
+          <a href="<%= element._id %>/update">
+            <button class="button is-link">Edit</button>
+          </a>
+          <a href="<%= element._id %>/delete">
+            <button class="button is-danger">Delete</button>
+          </a>
+        </div>
+
+    <% }); %>
+  </div>
 <%- include('footer') %>

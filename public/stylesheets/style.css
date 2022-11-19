@@ -1,8 +1,64 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
 
 a {
   color: #00B7FF;
+}
+
+
+.white {
+  color: #fff;
+}
+
+.is-black a {
+  color: #fff;
+}
+
+.grid-third {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 3rem;
+}
+
+button {
+  margin-right: 10px;
+}
+
+
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.one-card {
+  margin: 20px auto;
+  max-width: 960px;
+}
+
+
+.width-500 {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  clear: both;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: 5fr 2fr 3fr;
+  max-width: 600px;
+}
+
+.categories div {
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.category-name {
+  text-transform: uppercase;
+}
+
+.red {
+  background-color: red;
+  color: #fff;
 }
