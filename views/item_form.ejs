@@ -14,13 +14,13 @@
     <% const action = update ? `/item/${item._id}/update` : "/item/create" %>
 
     <% if (true) {%>
-        <form class="width-500" action="<%= action %>" method="post" >
+        <form class="width-500" action="<%= action %>" method="post" enctype="multipart/form-data">
           <input type="hidden" name="categories" value="<%= JSON.stringify(categories) %>" />
           <input type="hidden" name="_id" value="<%= item._id %>">
           <div class="field">
             <label class="label">House name:</label>
             <div class="control">
-              <input class="input" value="<%= item.name %>" type="text" name="name" placeholder="Cosy Home" />
+              <input required class="input" value="<%= item.name %>" type="text" name="name" placeholder="Cosy Home" />
             </div>
           </div>
 
@@ -35,8 +35,8 @@
             <label class="label">Category:</label>
             <div class="control">
               <div class="select">
-                <select name="category">
-                  <option>Select category</option>
+                <select required name="category">
+                  <option value="">Select category</option>
                   <% categories.forEach((category) => {%>
                     <option <%= item.category.toString() ==  category._id.toString() ? 'selected' : '' %> value="<%= category._id %>"><%= category.name %></option>
                   <% }); %>
@@ -56,21 +56,31 @@
           <div class="field">
             <label class="label">Price:</label>
             <div class="control">
-              <input value="<%= item.price %>" class="input" type="number" name="price" placeholder="1000000" />
+              <input required value="<%= item.price %>" class="input" type="number" name="price" placeholder="1000000" />
             </div>
           </div>
 
+          <% if (!!update) { %>
+
+          <input name="img" type="hidden" value="<%= item.img %>" />
+
           <div class="field">
-            <label class="label">Cover photo:</label>
+            <img src="<%= item.img %>" alt="old cover photo" />    
+          </div>
+
+          <% } %>
+
+          <div class="field">
+            <label class="label"><%= update ? 'Update cover photo' : 'Cover photo:' %></label>
             <div class="control">
-              <input value="<%= item.img %>" class="input" type="text" name="img" placeholder="/img/category-1.jpg" />
+              <input class="input" type="file" name="file" placeholder="/img/category-1.jpg" />
             </div>
           </div>
 
           <div class="field">
             <label class="label">Admin password:</label>
             <div class="control">
-              <input class="input" type="password" name="password" placeholder="admin password" />
+              <input required class="input" type="password" name="password" placeholder="admin password" />
             </div>
           </div>
           <input class="button is-primary" type="submit" value="Submit" />
